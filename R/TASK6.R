@@ -13,6 +13,7 @@
 #' @param labs_file Path to CSV with columns: patient_id, time_iso, lab, value
 #' @param vitals_file Path to CSV with columns: patient_id, time_iso, vital (HR/SBP), value
 #' @return list(merged_dt6, corr_summary_dt6)
+#' @import data.table
 #' @export
 
 task6_dt <- function(labs_file   = "clinical_labs.csv",
