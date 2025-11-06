@@ -11,6 +11,7 @@
 #' @param counts_file Path to CSV with columns containing gene, sample_id, count
 #' @param meta_file Path to CSV with columns containing sample_id, condition, batch, patient_id, and timepoint
 #' @return list(statsum_dt8, wide_dt8, filtered_dt8)
+#' @import data.table
 #' @export
 
 task8_dt <- function(counts_file = "bulk_counts_long.csv",
