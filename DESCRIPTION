@@ -10,7 +10,7 @@ Description: Collection of functions developed for Project October 2025.
     and cohort merging.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Depends: R (>= 4.3)
 Imports:
     data.table,
