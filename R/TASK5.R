@@ -12,6 +12,7 @@
 #' @param labs_file Path to CSV with columns: patient_id, time_iso, lab, value
 #' @param ref_file  Path to CSV with columns: lab, lower, upper
 #' @return list(classified_dt5, abnormal_by_patient_dt5, abnormal_by_lab_dt5)
+#' @import data.table
 #' @export
 
 task5_dt <- function(labs_file = "clinical_labs.csv",
