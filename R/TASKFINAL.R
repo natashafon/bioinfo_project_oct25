@@ -15,6 +15,7 @@
 #' @param annotation_file Path to annotation CSV
 #'   (columns: cell, cell_type, sample_type)
 #' @return list(merged_dt13, count_dt13, summary_dt13, plot_counts_dt13, plot_percent_dt13)
+#' @import data.table
 #' @export
 
 task13_dt <- function(integration_file = "annotated_GSM3516673_normal_annotated_GSM3516672_tumor_SeuratIntegration.csv",
