@@ -9,6 +9,7 @@
 #'
 #' @param counts_file path to CSV with columns containing gene, sample_id, count
 #' @return data.table with added columns: log2_count and high
+#' @import data.table
 #' @export
 
 task2_dt <- function(
