@@ -12,6 +12,7 @@
 #' @param peaks_file Path to CSV file of ATAC-seq peaks (columns: chr, start, end, score, etc.)
 #' @param genes_file Path to CSV file of gene annotation (columns: chr, gene_start, gene_end, gene)
 #' @return list(overlaps_dt10, peaks_per_gene_dt10, top20_dt10)
+#' @import data.table
 #' @export
 
 task10_dt <- function(peaks_file = "atac_peaks.bed.csv",
