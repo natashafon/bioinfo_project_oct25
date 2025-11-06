@@ -10,6 +10,7 @@
 #' @param counts_file Path to CSV with columns: gene, sample_id, count
 #' @param sample_metadata Path to CSV with columns: sample_id, condition, batch, patient_id, timepoint
 #' @return list(counts_annotated, counts_patient_total, counts_top10_by_condition)
+#' @import data.table
 #' @export
 
 task4_dt <- function(counts_file = "bulk_counts_long.csv",
