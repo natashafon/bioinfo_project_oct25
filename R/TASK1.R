@@ -9,7 +9,7 @@
 #' @param counts_file Path to CSV with columns containing gene, sample_id, count
 #' @param meta_file Path to CSV with columns containing sample_id, condition, batch, patient_id, and timepoint
 #' @return list(merged, filtered, gene_summary, per_condition_mean)
-#'
+#' @import data.table
 #' @export
 
 task1_dt <- function(counts_file = "bulk_counts_long.csv",
