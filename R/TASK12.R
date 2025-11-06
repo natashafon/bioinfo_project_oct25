@@ -12,6 +12,7 @@
 #' @param cohortB_file Path to cohortB_samples.csv
 #' @param counts_file Path to bulk_counts_long.csv (columns: gene, sample_id, count)
 #' @return list(combined_samples, merged_counts, top_genes_var, summary_counts, column_check)
+#' @import data.table
 #' @export
 
 task12_dt <- function(cohortA_file = "cohortA_samples.csv",
