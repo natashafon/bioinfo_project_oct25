@@ -10,6 +10,7 @@
 #'
 #' @param wide_file Path to CSV with columns containing gene and sample count columns
 #' @return list(counts_long_dt, counts_mean_dt, counts_summary_dt)
+#' @import data.table
 #' @export
 
 task9_dt <- function(wide_file = "bulk_counts_wide.csv") {
