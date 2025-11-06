@@ -11,6 +11,7 @@
 #' @param variants_file Path to CSV file of variants (columns: chr, pos, sample_id, impact)
 #' @param genes_file Path to CSV file of gene annotation (columns: chr, start, end, gene)
 #' @return list(overlaps_dt11, counts_per_gene_dt, genes_high_all_dt)
+#' @import data.table
 #' @export
 
 task11_dt <- function(variants_file = "variants.csv",
