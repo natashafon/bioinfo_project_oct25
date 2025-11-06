@@ -11,6 +11,7 @@
 #' @param peaks_file Path to CSV file containing ATAC-seq peaks
 #'   (expected columns: chr, start, end, score, etc.)
 #' @return list(chr2_window, top50_peaks)
+#' @import data.table
 #' @export
 
 task7_dt <- function(peaks_file = "atac_peaks.bed.csv") {
