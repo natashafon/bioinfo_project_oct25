@@ -85,77 +85,70 @@ list(
 #' @return list(counts_long_df, counts_mean_df, counts_summary_df)
 #' @export
 
-task9_df <- function(wide_file = "bulk_counts_wide.csv") {
-
-# Load library
-library(reshape2)
-
 # Read CSV file
 counts_wide_df <- read.csv(wide_file, stringsAsFactors = FALSE)
 head(counts_wide_df)
 str(counts_wide_df)
-
+  
 # Identify numeric columns (sample count columns)
 numeric_columns <- setdiff(names(counts_wide_df), "gene")
-numeric_columns
-
-# Convert from wide to long format
-counts_long_df <- melt(
-counts_wide_df,
-id.vars = "gene",
-measure.vars = numeric_columns,
-variable.name = "sample_id",
-value.name = "count"
-  )
-
+numeric_columns  
+  
+# Convert from long to wide
+# base R equivalent of melt()
+counts_long_df <- reshape(
+  counts_wide_df,
+  varying = numeric_columns,
+  v.names = "count",
+  timevar = "sample_id",
+  times   = numeric_columns,
+  idvar   = "gene",
+  direction = "long"
+)
+rownames(counts_long_df) <- NULL
+  
 # Compute per-sample totals
 counts_long_df$sample_total <- ave(
-counts_long_df$count,
-counts_long_df$sample_id,
-FUN = function(x) sum(x, na.rm = TRUE)
-  )
+  counts_long_df$count,
+  counts_long_df$sample_id,
+  FUN = function(x) sum(x, na.rm = TRUE)
+)
 
-
-# Assign condition labels (example rule)
+# Assign condition labels 
 counts_long_df$condition <- ifelse(
   grepl("treat", counts_long_df$sample_id, ignore.case = TRUE),
   "treated", "control"
-  )
-
-
+)
+  
 # Compute mean count per gene × condition
 counts_mean_df <- aggregate(
   count ~ gene + condition,
   data = counts_long_df,
   FUN = function(x) mean(x, na.rm = TRUE)
 )
-
 names(counts_mean_df)[3] <- "mean_count"
-
-counts_mean_df <- counts_mean_df[order(counts_mean_df$gene,
-                                       counts_mean_df$condition), ]
-
-# Convert back to wide format (gene × condition)
+counts_mean_df <- counts_mean_df[order(counts_mean_df$gene, counts_mean_df$condition), ]
+  
+# Convert from long to wide
 counts_summary_df <- reshape(
   counts_mean_df,
   timevar = "condition",
   idvar   = "gene",
   direction = "wide"
 )
-
-#Modify names
-names(counts_summary_df) <- gsub("^mean_count\\.", "",
-                                 names(counts_summary_df))
-
-#Sort
+  
+# Clean column names by removing 'mean_count.'
+names(counts_summary_df) <- gsub("^mean_count\\.", "", names(counts_summary_df))
+  
+# Sort columns by gene first
 col_order <- c("gene", setdiff(sort(names(counts_summary_df)), "gene"))
 counts_summary_df <- counts_summary_df[, col_order]
-
+  
 # Return all key tables
-list(
+return(list(
   counts_long_df    = counts_long_df,
   counts_mean_df    = counts_mean_df,
   counts_summary_df = counts_summary_df
-  )
+)
 }
 
